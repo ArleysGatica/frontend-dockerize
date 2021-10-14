@@ -1,13 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import MenuCard from './menuCard';
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
 
@@ -48,14 +42,13 @@ const useStyles = makeStyles({
 });
 
 const Menu = (props) => {
-  const apiUrl = "https://localhost:44323/";
+  const apiUrl = "https://localhost:44347/";
   const { data, tittle } = props;
-
   const classes = useStyles();
-
+ 
+  
   return (
     <>
-    
       <div className={classes.bar}>
         <h1 className={classes.tittle}>{tittle}</h1>
         <Button size="small">
@@ -67,37 +60,7 @@ const Menu = (props) => {
       <div className={classes.center}>
         {data
           ? data.map((info) => (
-              <Card className={classes.root}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    className={classes.media}
-                    alt={info.nombre}
-                    image={`${apiUrl}${info.imagen}`}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {info.Producto}
-                    </Typography>
-                    <Typography>{`C$ ${info.precio}`}</Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      {info.descripcion}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    <AddShoppingCartIcon />
-                  </Button>
-                  <Button size="small" color="primary">
-                    <strong>Leer más</strong>
-                  </Button>
-                </CardActions>
-              </Card>
+             <MenuCard info={info} classes={classes} />
             ))
           : null}
       </div>
