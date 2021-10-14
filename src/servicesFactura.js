@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = "https://localhost:44347/api/factura";
+const apiUrl = "0";
 export async function postFactura(Factura) {
   const baseUrl = apiUrl;
   console.log(Factura);

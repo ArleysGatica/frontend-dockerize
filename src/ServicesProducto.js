@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL || "https://localhost:44347/Api";
+const apiUrl = process.env.REACT_APP_API_URL || "0";
 
 export const GetProducto = () => {
   const baseUrl = `${apiUrl}/Producto`;
