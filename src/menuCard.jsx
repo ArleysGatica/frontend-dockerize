@@ -11,15 +11,18 @@ import {postFactura} from "./servicesFactura"
 
 const MenuCard = (props) => {
     const {info,classes}=props
+    const [detalle, setDetalle] = useState([]);
     const apiUrl = "https://localhost:44347/";
     const fechaD = new Date();
     
   console.log(info);
     const handleFactura=()=>{
-       const facturaDetalles={productoID:info.productoID,CatidadProductosVendido:parseFloat(2)};
-      const Factura={ClienteID:"d4319550-9481-4632-bb4d-ae96f27646c5",Total:info.precio,Fecha:`${fechaD.getFullYear()}-${
+        
+       const facturaDetalles={productoID:info.productoID};
+       setDetalle((prevDetalle) => [...prevDetalle, facturaDetalles]);
+      const Factura={ClienteID:"69289A27-78EE-44B6-8A14-1086BF904FB8",Total:info.precio,Fecha:`${fechaD.getFullYear()}-${
         parseInt(fechaD.getMonth()) + 1
-      }-${fechaD.getDate()}`,facturaDetalles}
+      }-${fechaD.getDate()}`,facturaDetalles:detalle}
       console.log(Factura)
       postFactura(Factura);
     }
@@ -49,7 +52,7 @@ const MenuCard = (props) => {
                 </CardActionArea>
                 <CardActions>
                   <Button size="small" color="primary">
-                    <AddShoppingCartIcon  />
+                    <AddShoppingCartIcon onClick={handleFactura}  />
                   </Button>
                   <Button size="small" color="primary">
                     <strong>Leer más</strong>
